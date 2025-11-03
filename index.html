@@ -1555,11 +1555,12 @@ setInterval(cycle,8000);
     </div>
 
     <script>
-        // Google Apps Script Web App URL
-        const GOOGLE_SCRIPT_URL ='https://script.google.com/macros/s/AKfycbz7tH91CeQMQ4EmVO6M1hw8D_ivWd1iCLy2YPiqMpJ-sMDMa3I3EsUndfhuhZyXJ9ftmQ/exec';
+// ✅ Google Apps Script Web App URL
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgOGpGvGH1UzQO_c6rKAhCIQ7_etkwo-MEOrS5VVpkTkdfZ72SKR5UojItnz69quN_8g/exec";
+
 // 🟢 फॉर्म डेटा भेजने का फ़ंक्शन
 async function sendData() {
-  // फॉर्म से वैल्यूज़ लो (IDs तुम्हारे फॉर्म में मौजूद होने चाहिए)
+  // फॉर्म से वैल्यू लो
   const data = {
     name: document.getElementById("name").value,
     district: document.getElementById("district").value,
@@ -1569,26 +1570,26 @@ async function sendData() {
     amount: document.getElementById("amount").value
   };
 
-  // वैलिडेशन
+  // 🔸 वैलिडेशन
   if (!data.name || !data.district || !data.state || !data.mobile || !data.date || !data.amount) {
     alert("⚠️ कृपया सभी फ़ील्ड भरें!");
     return;
   }
 
   try {
-    // Google Apps Script को डेटा भेजो
+    // 🔹 डेटा Google Apps Script को भेजो
     await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-      mode: "no-cors" // CORS issue से बचने के लिए
+      mode: "no-cors"
     });
     alert("✅ डेटा Google Sheet में भेजा गया (2-3 सेकंड में दिखेगा)");
   } catch (err) {
     alert("❌ Error sending to Google Sheets: " + err);
   }
-} 
-    </script>
+}
+</script>
         
         // Initialize registration counter
         let registrationCounter = localStorage.getItem('registrationCounter') || 1;
