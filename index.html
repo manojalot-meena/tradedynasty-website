@@ -1813,7 +1813,17 @@ setInterval(cycle,8000);
                         accounts: accounts
                     })
                 });
-                
+                .then(res => res.json())
+.then(result => {
+  if (result.status === "success") {
+    alert("✅ Data saved successfully! Registration ID: " + result.id);
+  } else {
+    alert("⚠️ Failed to save data: " + JSON.stringify(result));
+  }
+})
+.catch(err => {
+  alert("❌ Error connecting to Google Sheets: " + err);
+});
                 const result = await response.json();
                 
                 if (result.success) {
